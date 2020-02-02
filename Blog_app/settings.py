@@ -133,9 +133,24 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
+
+AWS_ACCESS_KEY_ID = 'AKIA2YQ6LL2UNVFJ2GXT'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'wordblogger'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_LOCATION = 'media'
+
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '"https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)')
+
+MEDIA_FILE_STORAGE = 'Blog_app.storage_backends.MediaStorage'  
 
 # Tinymce
 
@@ -178,16 +193,4 @@ SITE_ID = 1
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 
-AWS_ACCESS_KEY_ID = 'AKIA2YQ6LL2UNVFJ2GXT'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'wordbloger'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_LOCATION = 'media'
 
-
-
-MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
