@@ -150,7 +150,7 @@ MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '"https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)')
 
-MEDIA_FILE_STORAGE = 'Blog_app.storage_backends.MediaStorage'  
+MEDIA_FILE_STORAGE = 'wordbogger.storage_backends.MediaStorage'  
 
 # Tinymce
 
